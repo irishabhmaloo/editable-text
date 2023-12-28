@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100vmax;
+}
+
+.left {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 3%;
+    background-color: #f2f2f2 ;
+    
+}
+
+.textArea {
+    width: 80%;
+    height: -moz-fit-content;
+    height: 90%;
+    border-radius: 10px;
+    border: 2px solid rgb(83, 83, 83);
+    overflow: hidden;
+}
+
+.editable {
+    background-color: #f2f2f2;
+}
+
+.right {
+    width: 100%;
+    background-color: #222831;
+    color: white !important;
+}
+
+.options {
+    height: 100%;
+    /* background-color: royalblue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0% 9%;
+}
+
+.reset {
+    background-color: #393e46;
+    padding: 1% 4%;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid black; 
+}
+
+.ff {
+    /* background-color: beige; */
+    margin-top: 15%;
+    width: 80%;
+    height: -moz-fit-content;
+    height: fit-content;
+    color: #f2f2f2 !important;
+}
+
+.other-vals {
+    display: flex;
+    justify-content: flex-start;
+    width: 80%;
+    margin-top: 2%;
+}
+
+.num {
+    display: flex;
+    margin-right: 3%;
+}
+
+.final-button {
+    display: flex;
+    width: 80%;
+    position: absolute;
+    bottom: 10%;
+}
+
+.fb {
+    width: 30%;
+}
+
+.on-undo {
+    margin-right: 1%;
+}
