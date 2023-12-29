@@ -20,6 +20,9 @@ export default function Lower() {
   const [size, setSize] = useState(20);
   const [text, setText] = useState("");
   const [fF, setFf] = useState("Arial");
+  const [x, setX] = useState(100);
+  const [y, setY] = useState(100);
+  const [disabled, setDisabled] = useState(false);
 
 
   // handlers
@@ -40,6 +43,11 @@ export default function Lower() {
     setFf(e.target.value)
   }
 
+  const changePositionHandler = (e,data) => {
+    setX(data.x)
+    setY(data.y)
+  }
+
   const [stack, setStack] = useState([]);
   const [stack2, setStack2] = useState([]);
 
@@ -48,28 +56,36 @@ export default function Lower() {
     console.log(stack)
     stack2.push(stack.pop());
     let newProp = stack[stack.length - 1]
-    let { color, size, text, fF } = newProp;
+    let { color, size, text, fontFamily, positionX, positionY } = newProp;
     setColor(color)
     setSize(size)
     setText(text)
-    setFf(fF)
+    setFf(fontFamily)
+    setX(positionX)
+    setY(positionY)
+    stack.pop()
   }
-
-
+  
+  
   // redo
   const onRedo = () => {
     stack.push(stack2.pop());
     let newProp = stack[stack.length - 1]
-    let { color, size, text, fF } = newProp;
+    let { color, size, text, fontFamily, positionX, positionY } = newProp;
     setColor(color)
     setSize(size)
     setText(text)
-    setFf(fF)
+    setFf(fontFamily)
+    setX(positionX)
+    setY(positionY)
+    stack.pop()
   }
 
   useEffect(() => {
-    stack.push({ color: color, size: size, text: text, fontFamily: fF })
-  }, [color, size, text, fF])
+    console.log("pushing initiated")
+    stack.push({ color: color, size: size, text: text, fontFamily: fF, positionX:x, positionY:y })
+    console.log("pushing completed")
+  }, [color, size, text, fF,x,y])
 
 
   return (
@@ -77,11 +93,11 @@ export default function Lower() {
       {/* reset options */}
       <div className='reset'>
         <div className="on-undo">
-          <Button variant="contained" onClick={onUndo}>Undo</Button>
+          <Button variant="contained" onClick={onUndo} disabled={disabled}>Undo</Button>
         </div>
 
         <div className="on-redo">
-          <Button variant="contained" onClick={onRedo}>Redo</Button>
+          <Button variant="contained" onClick={onRedo} disabled={disabled}>Redo</Button>
         </div>
 
       </div>
@@ -91,8 +107,8 @@ export default function Lower() {
         {/* main editing area */}
         <div className="left">
           <div className="textArea">
-            <Draggable>
-              <input className="editable" type="text" style={{ color: color, fontSize: size, fontFamily: fF }} value={text} onChange={(e) => { changeTextHandler(e) }} />
+            <Draggable onStop={(e,data)=>{changePositionHandler(e,data)}} position={{x,y}} disabled={disabled}>
+              <input className="editable" placeholder="New Text" type="text" disabled={disabled} style={disabled?{border:"none",color: color, fontSize: size, fontFamily: fF}:{ color: color, fontSize: size, fontFamily: fF }} value={text} onChange={(e) => { changeTextHandler(e) }} />
             </Draggable>
           </div>
         </div>
@@ -107,10 +123,11 @@ export default function Lower() {
                 {...defaultProps}
                 id="disable-close-on-select"
                 disableCloseOnSelect
+                disabled={disabled}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Font-Family"
+                    placeholder="Arial"
                     variant="standard"
                     onSelect={(e) => changeFfHandler(e)}
                   />
@@ -126,6 +143,7 @@ export default function Lower() {
                   id="size"
                   placeholder = {size}
                   onBlur={(e) => changeSizeHandler(e)}
+                  disabled={disabled}
                 />
               </div>
 
@@ -136,12 +154,13 @@ export default function Lower() {
                   name="color"
                   id="color"
                   onMouseLeave={(e) => changeColorHandler(e)}
+                  disabled={disabled}
                 />
               </div>
             </div>
 
             <div className="final-button">
-              <Button className="fb" variant="contained">Add Text</Button>
+              <Button className="fb" variant="contained" onClick={()=>setDisabled(true)} disabled={disabled}>Add Text</Button>
             </div>
 
           </div>
