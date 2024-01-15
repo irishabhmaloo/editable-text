@@ -38,8 +38,6 @@ The application supports undo and redo functionality:
 
 When you are done editing and satisfied with the changes, click on the "ADD TEXT" button. This will add your text to the canvas in its final edited state. Note that clicking "ADD TEXT" will disable all the edit options.
 
-![Add Text Example](images/add_text_example.png)
-
 ### Adding Images
 
 You can also add images to the canvas. Use the following code to insert an image into your markdown:
