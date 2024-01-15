@@ -16,11 +16,15 @@ Upon starting the application, the following page loads:
 
 ### Text Customization
 
-You can customize the text in terms of size, font family, and color using the options provided on the right side of the canvas.
+You can change the text, size, font family and color using the options provides at the right side:
+
+![Application Preview](images/edit_example.png)
 
 ### Text Area Movement
 
-The text area is movable across the canvas. You can click and drag to reposition it as desired.
+The text area is movable across the canvas. You can click and drag to reposition it as desired:
+
+![Application Preview](images/drag_example.png)
 
 ### Undo and Redo
 
@@ -28,11 +32,7 @@ The application supports undo and redo functionality:
 
 - **Undo Button:** Reverts back one step to the previous selections. For example, if you change the position or color, clicking undo will revert it to the previous state.
 
-  ![Undo Example](images/undo_example.png)
-
 - **Redo Button:** Restores changes that were undone using the undo button. It can be used to redo the color changes, as shown in the example below.
-
-  ![Redo Example](images/redo_example.png)
 
 ### Adding Text
 
